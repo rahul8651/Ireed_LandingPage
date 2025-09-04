@@ -13,7 +13,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { Phone, Mail, MapPin } from "lucide-react";
-
 import { Menu, X } from "lucide-react";
 
 // Sample dynamic data for the card section and scrollable images
@@ -39,6 +38,27 @@ const cardData = [
     imgSrc: "https://tridentrealty.co.in/home/images/16569323395775.webp",
   },
 ];
+const CounterCard = ({ value, imgSrc }) => {
+  const count = useCounter(value, 2000); // ✅ hook is now inside component
+
+  return (
+    <div
+      className="flex items-center justify-between w-full h-[160px] p-6 rounded-xl shadow-xl 
+      border border-transparent hover:border-blue-500 transition duration-300 bg-white"
+    >
+      <span className="font-semibold text-blue-600 text-3xl sm:text-4xl md:text-5xl">
+        {count}+
+      </span>
+      <Image
+        src={imgSrc}
+        alt="icon"
+        width={100}
+        height={60}
+        className="w-[80px] h-[50px] sm:w-[80px] sm:h-[60px] object-contain"
+      />
+    </div>
+  );
+};
 function useCounter(target, duration = 2000) {
   const [count, setCount] = useState(0);
 
@@ -65,7 +85,6 @@ const scrollableImages = [
   "https://tridentrealty.co.in/uploads/banner/17087007943099.webp",
   "https://tridentrealty.co.in/uploads/banner/17087007654384.webp",
 ];
-
 const Page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -144,7 +163,7 @@ const Page = () => {
               </ul>
 
               <ul className="flex justify-end items-center font-serif text-sm md:gap-6">
-                <li >
+                <li>
                   <a
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
@@ -152,7 +171,7 @@ const Page = () => {
                     Who We Are
                   </a>
                 </li>
-                <li >
+                <li>
                   <a
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
@@ -160,7 +179,7 @@ const Page = () => {
                     Projects
                   </a>
                 </li>
-                <li >
+                <li>
                   <a
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
@@ -168,7 +187,7 @@ const Page = () => {
                     Customer Zone
                   </a>
                 </li>
-                <li >
+                <li>
                   <a
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
@@ -287,26 +306,9 @@ const Page = () => {
 
         {/* Card Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 md:mx-40 max-w-full px-4 py-8">
-          {cardData.map((card) => {
-            const count = useCounter(card.value, 2000); // 2s animation
-            return (
-              <div
-                key={card.id}
-                className="flex items-center justify-between w-full h-[160px] p-6 rounded-xl shadow-xl border border-transparent hover:border-blue-500 transition duration-300 bg-white"
-              >
-                <span className="font-semibold text-blue-600 text-3xl sm:text-4xl md:text-5xl">
-                  {count}
-                </span>
-                <Image
-                  src={card.imgSrc}
-                  alt="icon"
-                  width={100}
-                  height={60}
-                  className="w-[80px] h-[50px] sm:w-[80px] sm:h-[60px] object-contain"
-                />
-              </div>
-            );
-          })}
+          {cardData.map((card) => (
+            <CounterCard key={card.id} {...card} />
+          ))}
         </div>
 
         {/* Swiper Section */}
@@ -324,9 +326,11 @@ const Page = () => {
           >
             {scrollableImages.map((src, index) => (
               <SwiperSlide key={index}>
-                <img
+                <Image
                   src={src}
                   alt={`image-${index}`}
+                  width={200}
+                  height={200}
                   className="w-full h-[250px] sm:h-[350px] lg:h-[450px] object-cover rounded-xl"
                 />
               </SwiperSlide>
@@ -466,7 +470,7 @@ const Page = () => {
                 MEDIA CENTRE
               </h3>
               <p className=" text-sm  mt-1 md:pt-8 text-start  text-gray-600">
-                Take a look at what we've been up to in the media and other
+                Take a look at what we&apos;ve been up to in the media and other
                 coverages related to the brand.
               </p>
 
