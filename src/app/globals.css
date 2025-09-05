@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -27,5 +28,9 @@
  /* globals.css */
 body {
   font-family: Optima, Candara, 'Segoe UI', Calibri, Arial, sans-serif;
+  
 }
 
+* {
+  box-sizing: border-box;
+}
