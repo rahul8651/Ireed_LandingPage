@@ -423,11 +423,11 @@ const Page = () => {
               <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
                 GALLERY
               </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start  text-gray-600">
+              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
                 Go through our selection of images and videos to know more about
                 Trident Realty
               </p>
-              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-10 hover:cursor-pointer">
+              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-auto hover:cursor-pointer">
                 Read More...
               </button>
             </div>
@@ -446,11 +446,11 @@ const Page = () => {
               <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
                 SOCIAL MEDIA
               </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start  text-gray-600">
+              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
                 Join the social media family of Trident Realty and get the
                 updates on the latest developments and happenings.
               </p>
-              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-10 hover:cursor-pointer">
+              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-auto hover:cursor-pointer">
                 Read More...
               </button>
             </div>
@@ -469,12 +469,12 @@ const Page = () => {
               <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
                 MEDIA CENTRE
               </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start  text-gray-600">
+              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
                 Take a look at what we&apos;ve been up to in the media and other
                 coverages related to the brand.
               </p>
 
-              <button className="w-30 h-12  transition-all bg-white border-2 border-gray-400 mt-10 hover:cursor-pointer">
+              <button className="w-30 h-12  transition-all bg-white border-2 border-gray-400 mt-auto hover:cursor-pointer">
                 Read More...
               </button>
             </div>
