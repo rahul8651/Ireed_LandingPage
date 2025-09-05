@@ -456,8 +456,8 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px] bg-gray-200 shadow-gray-400 shadow-2xl h-auto border-b-2 border-gray-400 hover:border-green-500">
-            <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden  ">
+          <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px] bg-gray-200 shadow-gray-400 flex-wrap shadow-2xl h-auto border-b-2 border-gray-400 hover:border-green-500">
+            <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden   ">
               <Image
                 src="https://tridentrealty.co.in/home/images/image4.webp"
                 alt="gallery"
@@ -486,7 +486,7 @@ const Page = () => {
           <h2 className="text-xl sm:text-2xl md:text-6xl font-normal tracking-wide mb-12">
             FOLLOW US
           </h2>
-          <div className="flex gap-4 sm:gap-16 text-xl sm:text-4xl text-gray-800">
+          <div className="flex gap-4 sm:gap-16 text-xl sm:text-2xl text-gray-800">
             <a
               href="#"
               className="hover:text-blue-600 hover:scale-110 transition-transform duration-300 cursor-pointer"
@@ -558,63 +558,99 @@ const Page = () => {
           <div>
             <h2 className="text-xl font-serif text-blue-500">WHO WE ARE</h2>
             <ul className="grid gap-2 pt-3 font-medium text-gray-700 ">
-              <li>Brand Philosophy</li>
-              <li>The Logo Story</li>
-              <li>The Trident Approach</li>
-              <li>Vision & Mission</li>
-              <li>Group Chairman</li>
-              <li>Leadership Team</li>
+              <li>
+                <a href="#brand-philosophy">Brand Philosophy</a>
+              </li>
+              <li>
+                <a href="#logo-story">The Logo Story</a>
+              </li>
+              <li>
+                <a href="#trident-approach">The Trident Approach</a>
+              </li>
+              <li>
+                <a href="#vision-mission">Vision & Mission</a>
+              </li>
+              <li>
+                <a href="#group-chairman">Group Chairman</a>
+              </li>
+              <li>
+                <a href="#leadership-team">Leadership Team</a>
+              </li>
             </ul>
           </div>
           <div className="grid grid-rows-2 gap-6">
             <div>
               <h2 className="text-xl font-serif text-blue-500">PROJECTS</h2>
               <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li>Residential</li>
-                <li>Commercial</li>
+                <li><a href="#">Residential</a></li>
+                <li><a href="#">Commercial</a></li>
               </ul>
             </div>
             <div>
               <h2 className="text-xl font-serif text-blue-500">NEW PROJECTS</h2>
               <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li>Windsong Residences</li>
+                <li><a href="#">Windsong Residences</a></li>
               </ul>
             </div>
           </div>
           <div>
             <h2 className="text-xl font-serif text-blue-500">LOCATIONS</h2>
             <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-              <li>Delhi NCR</li>
-              <li>Mumbai</li>
-              <li>Chandigarh</li>
+               <li><a href="#delhi-ncr">Delhi NCR</a></li>
+  <li><a href="#mumbai">Mumbai</a></li>
+  <li><a href="#chandigarh">Chandigarh</a></li>
               <li>
                 <button className="bg-blue-600 text-white py-1 px-4 rounded-md">
-                  Coming Soon
+                  <a href="#">Coming Soon</a>
                 </button>
               </li>
-              <li>Gurugram & Panipat</li>
+              <li><a href="#">Gurugram & Panipat</a></li>
             </ul>
           </div>
           <div>
             <h2 className="text-xl font-serif text-blue-500">MEDIA CENTER</h2>
             <ul className="grid gap-2 pt-3 font-serif text-gray-700">
-              <li>News</li>
-              <li>Press Release</li>
-              <li>Blogs</li>
-              <li>Videos</li>
-              <li>Media Centre</li>
-              <li>Gallery</li>
+              <li>
+                <a href="#">News</a>
+              </li>
+              <li>
+                <a href="#">Press Release</a>
+              </li>
+              <li>
+                <a href="#">Blogs</a>
+              </li>
+              <li>
+                <a href="#">Videos</a>
+              </li>
+              <li>
+                <a href="#">Media Centre</a>
+              </li>
+              <li>
+                <a href="#">Gallery</a>
+              </li>
             </ul>
           </div>
           <div>
             <h2 className="text-xl font-serif text-blue-500">OTHER LINKS</h2>
             <ul className="grid gap-2 pt-3 font-serif text-gray-700">
-              <li>Construction Update</li>
-              <li>Testimonials</li>
-              <li>Customer Zone</li>
-              <li>Associate Zone</li>
-              <li>Careers</li>
-              <li>Contact Us</li>
+              <li>
+                <a href="#">Construction Update</a>
+              </li>
+              <li>
+                <a href="#">Testimonials</a>
+              </li>
+              <li>
+                <a href="#">Customer Zone</a>
+              </li>
+              <li>
+                <a href="#">Associate Zone</a>
+              </li>
+              <li>
+                <a href="#">Careers</a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -640,11 +676,15 @@ const Page = () => {
               <div>
                 <p className="font-semibold">Corporate Office</p>
                 <p className="text-gray-600 text-sm">
-                  Ireed India, Ninex mall, DLF Square,
+                  Office Suite 8 & 9, 3rd Floor,
                   <br />
-                  DLF Phase-II, Jacaranda Marg,
-                  <br />
-                  Gurugram - 122002, Haryana (India).
+                   Ninex City Mart, Sohna Road,
+                   <br/>
+                  Near Radisson Hotel, Sector 49,
+                  <br/>
+                  Gurugram, Haryana 122018
+                  
+                  
                 </p>
               </div>
             </div>
