@@ -640,7 +640,7 @@ const Page = () => {
               <div>
                 <p className="font-semibold">Corporate Office</p>
                 <p className="text-gray-600 text-sm">
-                  Trident Realty, 16th Floor, DLF Square,
+                  Ireed India, Ninex mall, DLF Square,
                   <br />
                   DLF Phase-II, Jacaranda Marg,
                   <br />
@@ -654,7 +654,7 @@ const Page = () => {
                 href="mailto:care@tridentrealty.co.in"
                 className="text-blue-600 font-semibold hover:underline"
               >
-                care@tridentrealty.co.in
+                care@ireedindia.co.in
               </a>
             </div>
           </div>
@@ -663,7 +663,7 @@ const Page = () => {
         <div className="bg-blue-900 text-white py-4 text-center md:text-left">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
             <p className="text-sm md:text-base">
-              © Trident Realty , 2025 All Rights Reserved
+              © IREED INDIA , 2025 All Rights Reserved
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
               <a href="#" className="hover:underline">
@@ -691,7 +691,7 @@ const Page = () => {
               </a>
             </div>
             <p className="text-sm">
-              Designed By: <span className="font-semibold">CSIPL</span>
+              Designed By: <span className="font-semibold">IREED</span>
             </p>
           </div>
         </div>
