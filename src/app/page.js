@@ -272,27 +272,30 @@ const Page = () => {
         </div>
 
         <div className="my-12 md:my-0 flex flex-col md:flex-row justify-center w-full items-center gap-6 px-4 max-w-[1200px]  mx-auto">
-          <div className="w-[40%]   md:text-left">
-            <h2 className="font-stretch-50% text-xl   md:text-2xl">
+          <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] mx-auto md:text-left text-center px-4 sm:px-6 lg:px-8">
+            <h2 className="font-stretch-50% text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
               Creating exceptional living spaces with robust engineering & an
               unparalleled delivery without compromising the ethos of Customer
               Centricity, Sustainability, and Well-being.
             </h2>
           </div>
+
           <div className="hidden md:block w-2 h-[200px] bg-gradient-to-b from-blue-500 to-green-500 bg-gray-400"></div>
-          <div className="w-[60%]   md:text-left md:py-12 py-6 sm:py-4">
-            <h2 className="font-stretch-50% text-3xl  md:text-5xl pl-4 text-green-500  ">
+          <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto md:text-left text-center md:py-12 py-6 sm:py-4 px-4 sm:px-6 lg:px-12">
+            <h2 className="font-stretch-50% text-2xl sm:text-3xl md:text-5xl pl-0 md:pl-4 text-green-500">
               BUILDING THE NATION
             </h2>
+
             <div className="mt-4">
-              <p className=" md:p-6 my-6 text-start  px-20 font-stretch-50%  text-2xl  md:text-xl">
+              <p className="my-6 text-start md:text-left text-base sm:text-lg md:text-xl leading-relaxed md:p-6 px-2 sm:px-6 lg:px-12 font-stretch-50%">
                 Established in 2008, Trident Realty is an innovation-led,
                 future-focused real estate developer. The company has been a
                 pioneering force behind the rapidly changing skylines of NCR,
                 MMR & Tri-City, setting benchmarks for quality, robust
                 engineering, and in-house research.
               </p>
-              <button className="w-auto px-8 py-3 mx-8 rounded-md mt-4 border-1 overflow-hidden hover:cursor-pointer hover:bg-blue-500 transition-all ease-in-out">
+
+              <button className="px-6 sm:px-8 py-2 sm:py-3 mx-auto md:mx-8 rounded-md mt-4 border border-gray-400 hover:cursor-pointer hover:bg-blue-500 transition-all ease-in-out">
                 <a
                   href="https://tridentrealty.co.in/careers"
                   className="text-black hover:text-white"
@@ -582,29 +585,43 @@ const Page = () => {
             <div>
               <h2 className="text-xl font-serif text-blue-500">PROJECTS</h2>
               <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li><a href="#">Residential</a></li>
-                <li><a href="#">Commercial</a></li>
+                <li>
+                  <a href="#">Residential</a>
+                </li>
+                <li>
+                  <a href="#">Commercial</a>
+                </li>
               </ul>
             </div>
             <div>
               <h2 className="text-xl font-serif text-blue-500">NEW PROJECTS</h2>
               <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li><a href="#">Windsong Residences</a></li>
+                <li>
+                  <a href="#">Windsong Residences</a>
+                </li>
               </ul>
             </div>
           </div>
           <div>
             <h2 className="text-xl font-serif text-blue-500">LOCATIONS</h2>
             <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-               <li><a href="#delhi-ncr">Delhi NCR</a></li>
-  <li><a href="#mumbai">Mumbai</a></li>
-  <li><a href="#chandigarh">Chandigarh</a></li>
+              <li>
+                <a href="#delhi-ncr">Delhi NCR</a>
+              </li>
+              <li>
+                <a href="#mumbai">Mumbai</a>
+              </li>
+              <li>
+                <a href="#chandigarh">Chandigarh</a>
+              </li>
               <li>
                 <button className="bg-blue-600 text-white py-1 px-4 rounded-md">
                   <a href="#">Coming Soon</a>
                 </button>
               </li>
-              <li><a href="#">Gurugram & Panipat</a></li>
+              <li>
+                <a href="#">Gurugram & Panipat</a>
+              </li>
             </ul>
           </div>
           <div>
@@ -678,13 +695,11 @@ const Page = () => {
                 <p className="text-gray-600 text-sm">
                   Office Suite 8 & 9, 3rd Floor,
                   <br />
-                   Ninex City Mart, Sohna Road,
-                   <br/>
+                  Ninex City Mart, Sohna Road,
+                  <br />
                   Near Radisson Hotel, Sector 49,
-                  <br/>
+                  <br />
                   Gurugram, Haryana 122018
-                  
-                  
                 </p>
               </div>
             </div>
