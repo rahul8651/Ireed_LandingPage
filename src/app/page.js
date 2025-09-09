@@ -91,9 +91,9 @@ const Page = () => {
   return (
     <>
       {/*  Header */}
-      <header className="fixed top-0 left-0 w-full  md:py-4 z-10  md:h-32 bg-white ">
-        <div className=" md:mx-50 px-4 py-2 flex justify-between items-center flex-wrap ">
-          <div className="flex-shrink-0 ">
+      <header className="fixed top-0 left-0 w-full md:py-4 z-10 bg-white">
+        <div className="md:mx-50 px-4 py-2 flex justify-between items-center flex-wrap">
+          <div className="flex-shrink-0">
             <Image
               src="https://www.ireedindia.com/assets/images/logo/logo-dark.png"
               alt="logo"
@@ -104,9 +104,9 @@ const Page = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2  md:hidden pb-2">
+            <div className="flex items-center gap-2 lg:hidden pb-2">
               <a href="#">
-                <button className="bg-blue-600 text-white text-xl  font-bold  hover:cursor-pointer  animate-pulse transition-all px-3 py-2">
+                <button className="bg-blue-600 text-white text-xl font-bold hover:cursor-pointer animate-pulse transition-all px-3 py-2">
                   Book Online
                 </button>
               </a>
@@ -118,13 +118,14 @@ const Page = () => {
               </button>
             </div>
 
-            <div className="hidden md:flex flex-col  items-end gap-2 md:py-2">
+            <div className="hidden lg:flex flex-col items-end gap-2 md:py-2">
               <ul
-                className="flex items-center gap-4 "
+                className="flex items-center gap-4"
                 style={{
                   color: "#333333",
                   fontWeight: "600",
                   fontSize: "12px",
+                  marginBottom: "1px",
                 }}
               >
                 <li>
@@ -136,7 +137,7 @@ const Page = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-sm md:text-[12px] p-2  hover:text-blue-600 transition-colors"
+                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
                   >
                     ASSOCIATE ZONE
                   </a>
@@ -159,7 +160,6 @@ const Page = () => {
                     EMPLOYEE LOGIN
                   </a>
                 </li>
-
                 <div className="w-px h-7 bg-gray-400"></div>
                 <li className="flex items-center gap-4">
                   <a href="#">
@@ -171,42 +171,59 @@ const Page = () => {
                 </li>
               </ul>
 
-              <ul
-                className="flex justify-end items-center  text-sm md:gap-8 pt-2 "
-                style={{
-                  color: "#333333",
-                  fontWeight: "500",
-                  fontSize: "12px",
-                }}
-              >
-                <li>
+              <ul className="flex justify-end items-center text-sm lg:gap-8 md:gap-4 pt-2">
+                <li
+                  style={{
+                    color: "#333333",
+                    fontWeight: "600",
+                    fontSize: "12px",
+                  }}
+                >
                   <a
                     href="#"
-                    className="text-xl hover:text-blue-600 transition-colors"
+                    className="text-lg  hover:text-blue-600 transition-colors"
                   >
                     WHO WE ARE
                   </a>
                 </li>
-                <li>
+                <li
+                  style={{
+                    color: "#333333",
+                    fontWeight: "600",
+                    fontSize: "11px",
+                  }}
+                >
                   <a
                     href="#"
-                    className="text-xl hover:text-blue-600 transition-colors"
+                    className="text-lg hover:text-blue-600 transition-colors"
                   >
                     PROJECTS
                   </a>
                 </li>
-                <li>
+                <li
+                  style={{
+                    color: "#333333",
+                    fontWeight: "600",
+                    fontSize: "11px",
+                  }}
+                >
                   <a
                     href="#"
-                    className="text-xl hover:text-blue-600 transition-colors"
+                    className="text-lg hover:text-blue-600 transition-colors"
                   >
                     CUSTOMER ZONE
                   </a>
                 </li>
-                <li>
+                <li
+                  style={{
+                    color: "#333333",
+                    fontWeight: "600",
+                    fontSize: "11px",
+                  }}
+                >
                   <a
                     href="#"
-                    className="text-xl hover:text-blue-600 transition-colors"
+                    className="text-lg hover:text-blue-600 transition-colors"
                   >
                     CONTACT US
                   </a>
@@ -224,9 +241,8 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Mobile menu container - hidden by default, shown when toggled */}
         <div
-          className={`md:hidden ${
+          className={`lg:hidden ${
             isMenuOpen ? "block" : "hidden"
           } bg-gray-100 py-4`}
         >
@@ -325,7 +341,6 @@ const Page = () => {
 
         {/* Card Section */}
         <div className="w-[98%] sm:w-[90%] lg:w-[85%] mx-auto">
-
           <Swiper
             modules={[Autoplay]}
             spaceBetween={30}
@@ -344,7 +359,7 @@ const Page = () => {
                     alt={`image-${index}`}
                     fill
                     className="object-contain "
-                    priority={index === 0} 
+                    priority={index === 0}
                   />
                 </div>
               </SwiperSlide>
@@ -401,23 +416,52 @@ const Page = () => {
         </div>
 
         {/* Our Presence Section */}
-        <div className="flex flex-col items-center justify-center pt-20 w-full px-4 py-20 mt-12 bg-[url(https://tridentrealty.co.in/home/images/bg_happy_customer.webp)]">
+        <div className="flex flex-col items-center justify-center pt-20 w-full  py-20 mt-12 px-35 bg-[url(https://tridentrealty.co.in/home/images/bg_happy_customer.webp)]">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-center">
             OUR PRESENCE
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-6xl">
-            {/* City Card */}
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <p className="font-light text-2xl sm:text-3xl">DELHI</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full  px-4">
+            {/* Delhi NCR Card */}
+            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+              <Image
+                src="https://tridentrealty.co.in/home/images/delhilogo1.webp"
+                alt="delhiLogo"
+                width={70}
+                height={70}
+                className="object-contain"
+              />
+              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
+                DELHI NCR
+              </p>
             </div>
 
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <p className="font-light text-2xl sm:text-3xl">MUMBAI</p>
+            {/* Mumbai Card */}
+            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+              <Image
+                src="https://tridentrealty.co.in/home/images/delhilogo2.webp"
+                alt="mumbaiLogo"
+                width={70}
+                height={70}
+                className="object-contain"
+              />
+              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
+                MUMBAI
+              </p>
             </div>
 
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <p className="font-light text-2xl sm:text-3xl">CHANDIGARH</p>
+            {/* Chandigarh Card */}
+            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+              <Image
+                src="https://tridentrealty.co.in/home/images/delhilogo3.webp"
+                alt="chandigarhLogo"
+                width={70}
+                height={70}
+                className="object-contain"
+              />
+              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
+                CHANDIGARH
+              </p>
             </div>
           </div>
         </div>
