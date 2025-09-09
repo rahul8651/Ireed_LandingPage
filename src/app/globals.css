@@ -27,9 +27,9 @@
 } */
  /* globals.css */
 body {
-  font-family: Optima, Candara, 'Segoe UI', Calibri, Arial, sans-serif;
-  
+  font-family: 'Open Sans', sans-serif;
 }
+
 
 * {
   box-sizing: border-box;

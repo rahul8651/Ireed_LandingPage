@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Open_Sans } from "next/font/google";
 import {
   FaFacebookF,
   FaInstagram,
@@ -39,7 +40,7 @@ const cardData = [
   },
 ];
 const CounterCard = ({ value, imgSrc }) => {
-  const count = useCounter(value, 2000); // ✅ hook is now inside component
+  const count = useCounter(value, 2000);
 
   return (
     <div
@@ -80,19 +81,19 @@ function useCounter(target, duration = 2000) {
 }
 
 const scrollableImages = [
-  "https://tridentrealty.co.in/uploads/banner/17087007175245.webp",
-  "https://tridentrealty.co.in/uploads/banner/17087006907349.webp",
-  "https://tridentrealty.co.in/uploads/banner/17087007943099.webp",
-  "https://tridentrealty.co.in/uploads/banner/17087007654384.webp",
+  "/assest/17087006552469.webp",
+  "/assest/17087006907349.webp",
+  "/assest/17087007654384.webp",
+  "/assest/17087008185632.webp",
 ];
 const Page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
       {/*  Header */}
-      <header className="fixed top-0 left-0 w-full  md:py-4 z-10 md:h-32 bg-white">
-        <div className=" md:mx-20 px-4 py-2 flex justify-between items-center">
-          <div className="flex-shrink-0">
+      <header className="fixed top-0 left-0 w-full  md:py-4 z-10  md:h-32 bg-white ">
+        <div className=" md:mx-50 px-4 py-2 flex justify-between items-center flex-wrap ">
+          <div className="flex-shrink-0 ">
             <Image
               src="https://www.ireedindia.com/assets/images/logo/logo-dark.png"
               alt="logo"
@@ -103,9 +104,9 @@ const Page = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 md:hidden">
+            <div className="flex items-center gap-2  md:hidden pb-2">
               <a href="#">
-                <button className="bg-blue-600 text-white text-m  font-bold  hover:cursor-pointer  animate-pulse transition-all px-3 py-2">
+                <button className="bg-blue-600 text-white text-xl  font-bold  hover:cursor-pointer  animate-pulse transition-all px-3 py-2">
                   Book Online
                 </button>
               </a>
@@ -117,41 +118,49 @@ const Page = () => {
               </button>
             </div>
 
-            <div className="hidden md:flex flex-col items-end gap-2 md:py-2">
-              <ul className="flex items-center gap-4 text-sm font-medium">
+            <div className="hidden  md:flex flex-col items-end gap-2 md:py-2">
+              <ul
+                className="flex items-center gap-4 "
+                style={{
+                  color: "#333333",
+                  fontWeight: "600",
+                  fontSize: "12px",
+                }}
+              >
                 <li>
                   <button className="bg-blue-600 text-white w-30 h-8 px-2 py-1 text-md animate-pulse transition-all hover:cursor-pointer">
                     Book Online
                   </button>
                 </li>
-                <div className="w-px h-5 bg-gray-400"></div>
-                <li className="font-serif">
+                <div className="w-px h-7 bg-gray-400"></div>
+                <li>
                   <a
                     href="#"
-                    className="text-sm md:text-xl hover:text-blue-600 transition-colors"
+                    className="text-sm md:text-[12px] p-2  hover:text-blue-600 transition-colors"
                   >
                     ASSOCIATE ZONE
                   </a>
                 </li>
-                <div className="w-px h-5 bg-gray-400"></div>
-                <li className="font-serif">
+                <div className="w-px h-7 bg-gray-400"></div>
+                <li>
                   <a
                     href="#"
-                    className="text-sm md:text-xl hover:text-blue-600 transition-colors"
+                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
                   >
                     CAREER ZONE
                   </a>
                 </li>
-                <div className="w-px h-5 bg-gray-400"></div>
-                <li className="font-serif">
+                <div className="w-px h-7 bg-gray-400"></div>
+                <li>
                   <a
                     href="#"
-                    className="text-sm md:text-xl hover:text-blue-600 transition-colors"
+                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
                   >
                     EMPLOYEE LOGIN
                   </a>
                 </li>
-                <div className="w-px h-5 bg-gray-400"></div>
+
+                <div className="w-px h-7 bg-gray-400"></div>
                 <li className="flex items-center gap-4">
                   <a href="#">
                     <Phone size={18} className="text-gray-600" />
@@ -162,13 +171,20 @@ const Page = () => {
                 </li>
               </ul>
 
-              <ul className="flex justify-end items-center font-serif text-sm md:gap-6">
+              <ul
+                className="flex justify-end items-center  text-sm md:gap-8  "
+                style={{
+                  color: "#333333",
+                  fontWeight: "500",
+                  fontSize: "12px",
+                }}
+              >
                 <li>
                   <a
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
                   >
-                    Who We Are
+                    WHO WE ARE
                   </a>
                 </li>
                 <li>
@@ -176,7 +192,7 @@ const Page = () => {
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
                   >
-                    Projects
+                    PROJECTS
                   </a>
                 </li>
                 <li>
@@ -184,7 +200,7 @@ const Page = () => {
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
                   >
-                    Customer Zone
+                    CUSTOMER ZONE
                   </a>
                 </li>
                 <li>
@@ -192,7 +208,7 @@ const Page = () => {
                     href="#"
                     className="text-xl hover:text-blue-600 transition-colors"
                   >
-                    Contact Us
+                    CONTACT US
                   </a>
                 </li>
                 <li className="text-green-600 font-semibold">
@@ -308,34 +324,29 @@ const Page = () => {
         </div>
 
         {/* Card Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 md:mx-40 max-w-full px-4 py-8">
-          {cardData.map((card) => (
-            <CounterCard key={card.id} {...card} />
-          ))}
-        </div>
+        <div className="w-[98%] sm:w-[90%] lg:w-[85%] mx-auto">
 
-        {/* Swiper Section */}
-        <div className="w-[90%] sm:w-[70%]  mx-auto mt-6 pt-6">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={20}
+            spaceBetween={30}
             slidesPerView={1}
             loop={true}
             autoplay={{
-              delay: 2500,
+              delay: 3000,
               disableOnInteraction: false,
             }}
-            className="rounded-xl"
           >
             {scrollableImages.map((src, index) => (
               <SwiperSlide key={index}>
-                <Image
-                  src={src}
-                  alt={`image-${index}`}
-                  width={200}
-                  height={200}
-                  className="w-full h-[250px] sm:h-[350px] lg:h-[450px] object-cover rounded-xl"
-                />
+                <div className="relative w-full h-[450px] sm:h-[600px] lg:h-[750px] overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={`image-${index}`}
+                    fill
+                    className="object-contain "
+                    priority={index === 0} 
+                  />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -345,7 +356,7 @@ const Page = () => {
         <div className="flex flex-wrap justify-center gap-10 sm:gap-12 lg:gap-16 items-start mt-20 px-4">
           {/* Card 1 */}
           <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden rounded-xl">
+            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden ">
               <Image
                 src="https://tridentrealty.co.in/uploads/project/16691186361300.webp"
                 alt="trident-hills"
@@ -360,7 +371,7 @@ const Page = () => {
 
           {/* Card 2 */}
           <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden rounded-xl">
+            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden ">
               <Image
                 src="https://tridentrealty.co.in/uploads/project/16772212723436.webp"
                 alt="wingsong-residences"
@@ -375,7 +386,7 @@ const Page = () => {
 
           {/* Card 3 */}
           <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden rounded-xl">
+            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden">
               <Image
                 src="https://tridentrealty.co.in/uploads/project/17540349371037.webp"
                 alt="the-westpark"
@@ -390,29 +401,29 @@ const Page = () => {
         </div>
 
         {/* Our Presence Section */}
-        <div className="flex flex-col items-center justify-center mt-20 w-full px-4">
+        <div className="flex flex-col items-center justify-center pt-20 w-full px-4 py-20 mt-12 bg-[url(https://tridentrealty.co.in/home/images/bg_happy_customer.webp)]">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-center">
             OUR PRESENCE
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-6xl">
             {/* City Card */}
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
               <p className="font-light text-2xl sm:text-3xl">DELHI</p>
             </div>
 
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
               <p className="font-light text-2xl sm:text-3xl">MUMBAI</p>
             </div>
 
-            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+            <div className="h-40 flex justify-center items-center shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
               <p className="font-light text-2xl sm:text-3xl">CHANDIGARH</p>
             </div>
           </div>
         </div>
 
         {/* Gallery Cards Section */}
-        <div className="flex flex-wrap justify-center items-start mt-20 gap-10 pt-10 px-4">
+        <div className="flex flex-wrap justify-center items-start mt-20 gap-15 pt-10 px-4">
           <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px]  bg-gray-200 shadow-gray-400 shadow-2xl h-auto border-b-2 border-gray-400  hover:border-green-500">
             <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden">
               <Image
