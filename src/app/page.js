@@ -118,7 +118,7 @@ const Page = () => {
               </button>
             </div>
 
-            <div className="hidden  md:flex flex-col items-end gap-2 md:py-2">
+            <div className="hidden md:flex flex-col  items-end gap-2 md:py-2">
               <ul
                 className="flex items-center gap-4 "
                 style={{
@@ -172,7 +172,7 @@ const Page = () => {
               </ul>
 
               <ul
-                className="flex justify-end items-center  text-sm md:gap-8  "
+                className="flex justify-end items-center  text-sm md:gap-8 pt-2 "
                 style={{
                   color: "#333333",
                   fontWeight: "500",
