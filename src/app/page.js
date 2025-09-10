@@ -1,8 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Open_Sans } from "next/font/google";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,10 +11,133 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { Menu, X } from "lucide-react";
+import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
+import { MdOutlinePhoneInTalk } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { TfiEmail } from "react-icons/tfi";
 
-// Sample dynamic data for the card section and scrollable images
+
+// Counter hook for animated numbers
+const useCounter = (target, duration = 2000) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const incrementTime = Math.abs(Math.floor(duration / target));
+
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === target) clearInterval(timer);
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [target, duration]);
+
+  return count;
+};
+
+// Counter Card Component
+const CounterCard = ({ value, imgSrc }) => {
+  const count = useCounter(value, 2000);
+
+  return (
+    <div className="flex items-center justify-between w-full h-40 p-4 md:p-6 rounded-xl shadow-xl border border-transparent hover:border-blue-500 transition-all duration-300 bg-white">
+      <span className="font-semibold text-blue-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+        {count}+
+      </span>
+      <Image
+        src={imgSrc}
+        alt="icon"
+        width={100}
+        height={60}
+        className="w-16 h-10 sm:w-20 sm:h-12 md:w-20 md:h-15 object-contain"
+      />
+    </div>
+  );
+};
+
+// Project Card Component
+const ProjectCard = ({ src, alt, title, location, linkHref }) => (
+  <div className="w-full">
+    {/* Image container with smaller heights */}
+    <div className="w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[300px] relative overflow-hidden">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
+      />
+    </div>
+    {/* Title */}
+    <h3 className="pt-4 text-left font-semibold text-lg sm:text-xl text-gray-800">
+      {title}
+    </h3>
+    {/* Location and Arrow */}
+    <div className="flex justify-between items-center mt-2 pb-4 border-b border-gray-300">
+      <p className="text-gray-600 text-sm sm:text-base text-left">
+        {location}
+      </p>
+      <a href={linkHref} className="text-gray-500 hover:text-green-600 transition-colors duration-300">
+        <svg
+          className="w-5 h-5 sm:w-6 sm:h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+);
+
+// Presence Card Component
+const PresenceCard = ({ imgSrc, title, alt }) => (
+  <div className="h-40 md:h-48 w-full flex items-center justify-center gap-4 md:gap-6 px-4 md:px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+    <Image
+      src={imgSrc}
+      alt={alt}
+      width={70}
+      height={70}
+      className="w-12 h-12 md:w-16 md:h-16 lg:w-[70px] lg:h-[70px] object-contain"
+    />
+    <p className="font-light text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">
+      {title}
+    </p>
+  </div>
+);
+
+// Gallery Card Component
+const GalleryCard = ({ imgSrc, title, description, alt }) => (
+  <div className="w-full max-w-sm mx-auto bg-gray-200 shadow-2xl border-b-2 border-gray-400 hover:border-green-500 transition-colors duration-300">
+    <div className="w-full h-50 md:h-60 relative overflow-hidden">
+      <Image
+        src={imgSrc}
+        alt={alt}
+        fill
+        className="object-cover transition-transform duration-500 hover:scale-110 cursor-pointer"
+      />
+    </div>
+    <div className="p-4 md:p-6">
+      <h3 className="font-semibold text-xl md:text-2xl mb-2">{title}</h3>
+      <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+        {description}
+      </p>
+      <button className="px-4 py-2 border-2 border-gray-400 bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-sm">
+        Read More...
+      </button>
+    </div>
+  </div>
+);
+
+// Sample data
 const cardData = [
   {
     id: 1,
@@ -39,46 +160,6 @@ const cardData = [
     imgSrc: "https://tridentrealty.co.in/home/images/16569323395775.webp",
   },
 ];
-const CounterCard = ({ value, imgSrc }) => {
-  const count = useCounter(value, 2000);
-
-  return (
-    <div
-      className="flex items-center justify-between w-full h-[160px] p-6 rounded-xl shadow-xl 
-      border border-transparent hover:border-blue-500 transition duration-300 bg-white"
-    >
-      <span className="font-semibold text-blue-600 text-3xl sm:text-4xl md:text-5xl">
-        {count}+
-      </span>
-      <Image
-        src={imgSrc}
-        alt="icon"
-        width={100}
-        height={60}
-        className="w-[80px] h-[50px] sm:w-[80px] sm:h-[60px] object-contain"
-      />
-    </div>
-  );
-};
-function useCounter(target, duration = 2000) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const end = target;
-    const incrementTime = Math.abs(Math.floor(duration / end));
-
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start === end) clearInterval(timer);
-    }, incrementTime);
-
-    return () => clearInterval(timer);
-  }, [target, duration]);
-
-  return count;
-}
 
 const scrollableImages = [
   "/assest/17087006552469.webp",
@@ -86,707 +167,672 @@ const scrollableImages = [
   "/assest/17087007654384.webp",
   "/assest/17087008185632.webp",
 ];
+
+const projectsData = [
+  {
+    src: "https://tridentrealty.co.in/uploads/project/16691186361300.webp",
+    alt: "trident-hills",
+    title: "TRIDENT HILLS",
+    location: "RESIDENTIAL - CHANDIGARH",
+    linkHref: "https://tridentrealty.co.in/project-detail/trident-hills",
+  },
+  {
+    src: "https://tridentrealty.co.in/uploads/project/16772212723436.webp",
+    alt: "wingsong-residences",
+    title: "WINGSONG RESIDENCES",
+    location: "RESIDENTIAL - PANCHKULA",
+    linkHref: "https://tridentrealty.co.in/project-detail/wingsong-residences",
+  },
+  {
+    src: "https://tridentrealty.co.in/uploads/project/17540349371037.webp",
+    alt: "the-westpark",
+    title: "THE WESTPARK",
+    location: "RESIDENTIAL - MAHARASHTRA",
+    linkHref: "https://tridentrealty.co.in/project-detail/the-westpark",
+  },
+];
+
+const presenceData = [
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/delhilogo1.webp",
+    title: "DELHI NCR",
+    alt: "delhi-logo",
+  },
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/delhilogo2.webp",
+    title: "MUMBAI",
+    alt: "mumbai-logo",
+  },
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/delhilogo3.webp",
+    title: "CHANDIGARH",
+    alt: "chandigarh-logo",
+  },
+];
+
+const galleryData = [
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/banner_gallery1.webp",
+    title: "GALLERY",
+    description:
+      "Go through our selection of images and videos to know more about Trident Realty",
+    alt: "gallery",
+  },
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/image2.webp",
+    title: "SOCIAL MEDIA",
+    description:
+      "Join the social media family of Trident Realty and get the updates on the latest developments and happenings.",
+    alt: "social-media",
+  },
+  {
+    imgSrc: "https://tridentrealty.co.in/home/images/image4.webp",
+    title: "MEDIA CENTRE",
+    description:
+      "Take a look at what we've been up to in the media and other coverages related to the brand.",
+    alt: "media-centre",
+  },
+];
+
+const socialLinks = [
+  { Icon: FaFacebookF, href: "#", hoverColor: "hover:text-blue-600" },
+  { Icon: FaInstagram, href: "#", hoverColor: "hover:text-pink-600" },
+  { Icon: FaLinkedinIn, href: "#", hoverColor: "hover:text-blue-700" },
+  { Icon: FaXTwitter, href: "#", hoverColor: "hover:text-black" },
+  { Icon: FaYoutube, href: "#", hoverColor: "hover:text-red-600" },
+];
+
 const Page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const navLinks = [
+    { label: "ASSOCIATE ZONE", href: "#" },
+    { label: "CAREER ZONE", href: "#" },
+    { label: "EMPLOYEE LOGIN", href: "#" },
+    { label: "WHO WE ARE", href: "#" },
+    { label: "PROJECTS", href: "#" },
+    { label: "CUSTOMER ZONE", href: "#" },
+    { label: "CONTACT US", href: "#" },
+  ];
+
   return (
-    <>
-      {/*  Header */}
-      <header className="fixed top-0 left-0 w-full md:py-4 z-10 bg-white">
-        <div className="md:mx-50 px-4 py-2 flex justify-between items-center flex-wrap">
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-2 md:py-4 flex justify-between items-center">
+          {/* Logo */}
           <div className="flex-shrink-0">
             <Image
               src="/assest/logoestate.png"
               alt="logo"
               width={100}
               height={50}
-              className="hover:cursor-pointer"
+              className="cursor-pointer w-20 h-15 md:w-25 md:h-12 object-contain"
             />
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 lg:hidden pb-2">
-              <a href="#">
-                <button className="bg-blue-600 text-white text-xl font-bold hover:cursor-pointer animate-pulse transition-all px-3 py-2">
-                  Book Online
-                </button>
-              </a>
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-4 lg:hidden">
+            <button className="bg-blue-600 text-white text-sm font-bold animate-pulse px-3 py-2 hover:bg-blue-700 transition-colors">
+              Book Online
+            </button>
+            <button
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+              className="p-2"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex flex-col items-end gap-2">
+            {/* Top Row */}
+            <div className="flex items-center gap-4 text-xs font-semibold text-gray-700">
+              <button className="bg-blue-600 text-white px-3 py-1 animate-pulse hover:bg-blue-700 transition-colors">
+                Book Online
               </button>
+              <div className="w-px h-6 bg-gray-400"></div>
+              <a href="#" className="hover:text-blue-600 transition-colors">
+                ASSOCIATE ZONE
+              </a>
+              <div className="w-px h-6 bg-gray-400"></div>
+              <a href="#" className="hover:text-blue-600 transition-colors">
+                CAREER ZONE
+              </a>
+              <div className="w-px h-6 bg-gray-400"></div>
+              <a href="#" className="hover:text-blue-600 transition-colors">
+                EMPLOYEE LOGIN
+              </a>
+              <div className="w-px h-6 bg-gray-400"></div>
+              <div className="flex gap-3">
+                <a href="#">
+                  <Phone
+                    size={16}
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  />
+                </a>
+                <a href="#">
+                  <Mail
+                    size={16}
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  />
+                </a>
+              </div>
             </div>
 
-            <div className="hidden lg:flex flex-col items-end gap-2 md:py-2">
-              <ul
-                className="flex items-center gap-4"
-                style={{
-                  color: "#333333",
-                  fontWeight: "600",
-                  fontSize: "12px",
-                  marginBottom: "1px",
-                }}
+            {/* Bottom Row */}
+            <div className="flex items-center gap-8 text-xs font-semibold text-gray-700">
+              {navLinks.slice(3).map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#"
+                className="text-blue-600 hover:text-blue-800 transition-colors"
               >
-                <li>
-                  <button className="bg-blue-600 text-white w-30 h-8 px-2 py-1 text-md animate-pulse transition-all hover:cursor-pointer">
-                    Book Online
-                  </button>
-                </li>
-                <div className="w-px h-7 bg-gray-400"></div>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
-                  >
-                    ASSOCIATE ZONE
-                  </a>
-                </li>
-                <div className="w-px h-7 bg-gray-400"></div>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
-                  >
-                    CAREER ZONE
-                  </a>
-                </li>
-                <div className="w-px h-7 bg-gray-400"></div>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm md:text-[12px] p-2 hover:text-blue-600 transition-colors"
-                  >
-                    EMPLOYEE LOGIN
-                  </a>
-                </li>
-                <div className="w-px h-7 bg-gray-400"></div>
-                <li className="flex items-center gap-4">
-                  <a href="#">
-                    <Phone size={18} className="text-gray-600" />
-                  </a>
-                  <a href="#">
-                    <Mail size={18} className="text-gray-600" />
-                  </a>
-                </li>
-              </ul>
-
-              <ul className="flex justify-end items-center text-sm lg:gap-8 md:gap-4 pt-2">
-                <li
-                  style={{
-                    color: "#333333",
-                    fontWeight: "600",
-                    fontSize: "12px",
-                  }}
-                >
-                  <a
-                    href="#"
-                    className="text-lg  hover:text-blue-600 transition-colors"
-                  >
-                    WHO WE ARE
-                  </a>
-                </li>
-                <li
-                  style={{
-                    color: "#333333",
-                    fontWeight: "600",
-                    fontSize: "11px",
-                  }}
-                >
-                  <a
-                    href="#"
-                    className="text-lg hover:text-blue-600 transition-colors"
-                  >
-                    PROJECTS
-                  </a>
-                </li>
-                <li
-                  style={{
-                    color: "#333333",
-                    fontWeight: "600",
-                    fontSize: "11px",
-                  }}
-                >
-                  <a
-                    href="#"
-                    className="text-lg hover:text-blue-600 transition-colors"
-                  >
-                    CUSTOMER ZONE
-                  </a>
-                </li>
-                <li
-                  style={{
-                    color: "#333333",
-                    fontWeight: "600",
-                    fontSize: "11px",
-                  }}
-                >
-                  <a
-                    href="#"
-                    className="text-lg hover:text-blue-600 transition-colors"
-                  >
-                    CONTACT US
-                  </a>
-                </li>
-                <li className="text-green-600 font-semibold">
-                  <a
-                    href="#"
-                    className="text-xl hover:text-green-800 transition-colors"
-                  >
-                    Privilege Passport
-                  </a>
-                </li>
-              </ul>
+                Privilege Passport
+              </a>
             </div>
           </div>
         </div>
 
+        {/* Mobile Menu */}
         <div
-          className={`lg:hidden ${
-            isMenuOpen ? "block" : "hidden"
-          } bg-gray-100 py-4`}
+          className={`lg:hidden transition-all duration-300 ${
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          } overflow-hidden bg-gray-100`}
         >
-          <ul className="flex flex-col items-center gap-4 text-base font-medium">
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                ASSOCIATE ZONE
+          <div className="px-4 py-4 space-y-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="block py-2 font-medium hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
               </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                CAREER ZONE
-              </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                EMPLOYEE LOGIN
-              </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                Who We Are
-              </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                Projects
-              </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                Customer Zone
-              </a>
-            </li>
-            <li className="font-bold">
-              <a href="#" className="block py-2">
-                Contact Us
-              </a>
-            </li>
-            <li className="font-bold text-green-600">
-              <a href="#" className="block py-2">
-                Privilege Passport
-              </a>
-            </li>
-          </ul>
+            ))}
+            <a
+              href="#"
+              className="block py-2 font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Privilege Passport
+            </a>
+          </div>
         </div>
       </header>
 
-      <section className=" md:py-22">
-        <div className="w-full h-[50vh]  sm:h-[70vh] md:h-[90vh] lg:h-full md:py-10 overflow-hidden">
+      {/* Main Content */}
+      <main className="pt-16 md:pt-20">
+        {/* Hero Video Section */}
+        <section className="w-full h-[50vh] sm:h-[60vh] md:h-[80vh] lg:h-[90vh] overflow-hidden">
           <video
             src="/assest/17267429988474.mp4"
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover md:h-[100vh]"
-          ></video>
-        </div>
+            className="w-full h-full object-cover"
+          />
+        </section>
 
-        <div className="my-12 md:my-0 flex flex-col md:flex-row justify-center w-full items-center gap-6 px-4 max-w-[1200px]  mx-auto">
-          <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] mx-auto md:text-left text-center px-4 sm:px-6 lg:px-8">
-            <h2 className="font-stretch-50% text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
-              Creating exceptional living spaces with robust engineering & an
-              unparalleled delivery without compromising the ethos of Customer
-              Centricity, Sustainability, and Well-being.
-            </h2>
-          </div>
+        {/* About Section */}
+        <section className="py-12 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-700">
+                Creating exceptional living spaces with robust engineering & an
+                unparalleled delivery without compromising the ethos of Customer
+                Centricity, Sustainability, and Well-being.
+              </h2>
+            </div>
 
-          <div className="hidden md:block w-2 h-[200px] bg-gradient-to-b from-blue-500 to-green-500 bg-gray-400"></div>
-          <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto md:text-left text-center md:py-12 py-6 sm:py-4 px-4 sm:px-6 lg:px-12">
-            <h2 className="font-stretch-50% text-2xl sm:text-3xl md:text-5xl pl-0 md:pl-4 text-green-500">
-              BUILDING THE NATION
-            </h2>
+            <div className="hidden md:block w-0.5 h-48 bg-gradient-to-b from-blue-500 to-green-500"></div>
 
-            <div className="mt-4">
-              <p className="my-6 text-start md:text-left text-base sm:text-lg md:text-xl leading-relaxed md:p-6 px-2 sm:px-6 lg:px-12 font-stretch-50%">
+            <div className="flex-1">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-green-500 mb-6">
+                BUILDING THE NATION
+              </h2>
+              <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6">
                 Established in 2008, Trident Realty is an innovation-led,
                 future-focused real estate developer. The company has been a
                 pioneering force behind the rapidly changing skylines of NCR,
                 MMR & Tri-City, setting benchmarks for quality, robust
                 engineering, and in-house research.
               </p>
-
-              <button className="px-6 sm:px-8 py-2 sm:py-3 mx-auto md:mx-8 rounded-md mt-4 border border-gray-400 hover:cursor-pointer hover:bg-blue-500 transition-all ease-in-out">
-                <a
-                  href="https://tridentrealty.co.in/careers"
-                  className="text-black hover:text-white"
-                >
-                  Read More
-                </a>
+              <button className="px-6 py-3 border border-gray-400 rounded-md hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300">
+                <a href="https://tridentrealty.co.in/careers">Read More</a>
               </button>
             </div>
           </div>
-        </div>
 
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-20 px-40 
-                bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] 
-                bg-cover bg-center"
-        >
-          {cardData.map((card) => (
-            <CounterCard key={card.id} {...card} />
+          {/* 4 div section */}
+        </section>
+        <section className="py-10 bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] bg-repeat bg-center">
+          <div className="mx-auto w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl">
+            <div
+              className="bg-white rounded-lg shadow p-6 relative 
+      border border-transparent hover:border-green-700
+      hover:scale-105 cursor-pointer transition-all duration-500"
+            >
+              <div className="flex items-center justify-between pb-2">
+                <h2 className="text-5xl font-bold text-blue-900">16</h2>
+                <Image
+                  src="/assest1/happy_icon1.webp"
+                  alt="Happy Icon 1"
+                  width={70}
+                  height={70}
+                  className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                />
+              </div>
+              <p className="mt-5 text-sm text-gray-600">
+                YEARS OF EXPERTISE IN RESIDENTIAL & COMMERCIAL
+              </p>
+            </div>
+
+            <div
+              className="bg-white rounded-lg shadow p-6 relative 
+      border border-transparent hover:border-green-700
+      hover:scale-105 cursor-pointer transition-all duration-500"
+            >
+              <div className="flex items-center justify-between pb-2">
+                <h2 className="text-5xl font-bold text-blue-900">1.89</h2>
+                <Image
+                  src="/assest1/happy_icon1.webp"
+                  alt="Happy Icon 1"
+                  width={70}
+                  height={70}
+                  className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                />
+              </div>
+              <p className="mt-5 text-sm text-gray-600">
+                MILLION SQ. M. DELIVERED
+              </p>
+            </div>
+
+            <div
+              className="bg-white rounded-lg shadow p-6 relative 
+      border border-transparent hover:border-green-700
+      hover:scale-105 cursor-pointer transition-all duration-500"
+            >
+              <div className="flex items-center justify-between pb-2">
+                <h2 className="text-5xl font-bold text-blue-900">20k+</h2>
+                <Image
+                  src="/assest1/happy_icon1.webp"
+                  alt="Happy Icon 1"
+                  width={70}
+                  height={70}
+                  className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                />
+              </div>
+              <p className="mt-5 text-sm text-gray-600">HAPPY CUSTOMERS</p>
+            </div>
+
+            <div
+              className="bg-white rounded-lg shadow p-6 relative 
+      border border-transparent hover:border-green-700
+      hover:scale-105 cursor-pointer transition-all duration-500"
+            >
+              <div className="flex items-center justify-between pb-2">
+                <h2 className="text-5xl font-bold text-blue-900">1.02</h2>
+                <Image
+                  src="/assest1/happy_icon1.webp"
+                  alt="Happy Icon 1"
+                  width={70}
+                  height={70}
+                  className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                />
+              </div>
+              <p className="mt-5 text-sm text-gray-600">
+                MILLION SQ. M. UNDER DEVELOPMENT
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Image Carousel Section */}
+        <section className="py-8">
+          <div className="max-w-7xl mx-auto px-4">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+            >
+              {scrollableImages.map((src, index) => (
+                <SwiperSlide key={index}>
+                  {/* Container with max-width and aspect ratio for responsiveness */}
+                  <div className="relative mx-auto w-full max-w-[1200px] aspect-[16/9] overflow-hidden rounded-lg">
+                    <Image
+                      src={src}
+                      alt={`carousel-image-${index}`}
+                      fill
+                      className="object-contain transition-transform duration-700 hover:scale-105"
+                      priority={index === 0}
+                      sizes="(max-width: 768px) 100vw,
+                     (max-width: 1200px) 90vw,
+                     1200px"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
+
+        {/**Search Bar */}
+
+        <section className="w-full flex flex-col items-center py-6">
+          <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
+            <h2 className="text-3xl font-semibold mb-10">PROJECTS</h2>
+
+            <div className="w-full px-6">
+              <div className="flex border border-gray-300 overflow-hidden w-full max-w-7xl mx-auto">
+                <div className="flex-1 border-r border-gray-300 px-3 py-2">
+                  <label className="text-gray-500">PROPERTY TYPE</label>
+                  <select className="w-full outline-none">
+                    <option hidden>Any</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>Office</option>
+                  </select>
+                </div>
+
+                <div className="flex-1 border-r border-gray-300 px-3 py-2">
+                  <label className="text-gray-500">LOCATIONS</label>
+                  <select className="w-full outline-none">
+                    <option hidden>Any</option>
+                    <option>Delhi</option>
+                    <option>Mumbai</option>
+                    <option>Bangalore</option>
+                  </select>
+                </div>
+
+                <div className="flex-1 border-r border-gray-300 px-3 py-2">
+                  <label className="text-gray-500">STATUS</label>
+                  <select className="w-full outline-none">
+                    <option hidden>Any</option>
+                    <option>Ongoing</option>
+                    <option>Completed</option>
+                    <option>Upcoming</option>
+                  </select>
+                </div>
+
+                <div className="px-3 py-2">
+                  <button className="bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-green-700 hover:cursor-pointer">
+                    Search Properties
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/**------------------ */}
+
+        {/* Projects Section */}
+        <section className="py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          {projectsData.map((project, index) => (
+            <ProjectCard key={index} {...project} />
           ))}
         </div>
-
-        {/* Card Section */}
-        <div className="w-[98%] sm:w-[90%] lg:w-[85%] mx-auto">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-          >
-            {scrollableImages.map((src, index) => (
-              <SwiperSlide key={index}>
-                <div className="relative w-full h-[450px] sm:h-[600px] lg:h-[750px] overflow-hidden">
-                  <Image
-                    src={src}
-                    alt={`image-${index}`}
-                    fill
-                    className="object-contain "
-                    priority={index === 0}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
-        {/* Project Cards Section */}
-        <div className="flex flex-wrap justify-center gap-10 sm:gap-12 lg:gap-16 items-start mt-20 px-4">
-          {/* Card 1 */}
-          <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden ">
-              <Image
-                src="https://tridentrealty.co.in/uploads/project/16691186361300.webp"
-                alt="trident-hills"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <h3 className="pt-4 text-center font-semibold text-xl md:text-2xl">
-              TRIDENT HILLS
-            </h3>
-          </div>
-
-          {/* Card 2 */}
-          <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden ">
-              <Image
-                src="https://tridentrealty.co.in/uploads/project/16772212723436.webp"
-                alt="wingsong-residences"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <h3 className="pt-4 text-center font-semibold text-xl md:text-2xl">
-              WINGSONG RESIDENCES
-            </h3>
-          </div>
-
-          {/* Card 3 */}
-          <div className="w-full sm:w-[350px] md:w-[380px] lg:w-[400px] h-auto px-1">
-            <div className="w-full h-[350px] md:h-[380px] lg:h-[400px] relative overflow-hidden">
-              <Image
-                src="https://tridentrealty.co.in/uploads/project/17540349371037.webp"
-                alt="the-westpark"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <h3 className="pt-4 text-center font-semibold text-xl md:text-2xl">
-              THE WESTPARK
-            </h3>
-          </div>
-        </div>
+      </div>
+    </section>
 
         {/* Our Presence Section */}
-        <div className="flex flex-col items-center justify-center pt-20 w-full  py-20 mt-12 px-35 bg-[url(https://tridentrealty.co.in/home/images/bg_happy_customer.webp)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-center">
-            OUR PRESENCE
-          </h2>
+        <section
+          className="py-10 mt-10 bg-repeat"
+          style={{
+            backgroundImage:
+              "url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')",
+          }}
+        >
+          <div className="w-full mx-auto max-w-7xl">
+            <h2 className="text-center text-3xl font-semibold text-gray-700 mb-8">
+              OUR PRESENCE
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full  px-4">
-            {/* Delhi NCR Card */}
-            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <Image
-                src="https://tridentrealty.co.in/home/images/delhilogo1.webp"
-                alt="delhiLogo"
-                width={70}
-                height={70}
-                className="object-contain"
-              />
-              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
-                DELHI NCR
-              </p>
-            </div>
-
-            {/* Mumbai Card */}
-            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <Image
-                src="https://tridentrealty.co.in/home/images/delhilogo2.webp"
-                alt="mumbaiLogo"
-                width={70}
-                height={70}
-                className="object-contain"
-              />
-              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
-                MUMBAI
-              </p>
-            </div>
-
-            {/* Chandigarh Card */}
-            <div className="h-48 w-full flex items-center justify-center gap-6 px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
-              <Image
-                src="https://tridentrealty.co.in/home/images/delhilogo3.webp"
-                alt="chandigarhLogo"
-                width={70}
-                height={70}
-                className="object-contain"
-              />
-              <p className="font-light text-xl sm:text-2xl lg:text-3xl">
-                CHANDIGARH
-              </p>
+            <div className="flex justify-center gap-6 flex-wrap lg:flex-nowrap">
+              {[
+                { src: "/assest1/delhi.webp", name: "DELHI NCR", w: 70, h: 70 },
+                { src: "/assest1/mumbai.webp", name: "MUMBAI", w: 100, h: 100 },
+                {
+                  src: "/assest1/chandigarh.webp",
+                  name: "CHANDIGARH",
+                  w: 70,
+                  h: 70,
+                },
+              ].map((city, index) => (
+                <div
+                  key={index}
+                  className="flex items-center bg-white rounded-md shadow p-4 
+                     border border-transparent hover:border-green-700 
+                     hover:scale-105 cursor-pointer transition-all duration-500
+                     min-w-[250px] lg:min-w-[300px]"
+                >
+                  <Image
+                    src={city.src}
+                    alt={city.name}
+                    width={city.w}
+                    height={city.h}
+                    className="opacity-80 mr-4"
+                  />
+                  <p className="text-xl font-medium text-gray-700">
+                    {city.name}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Gallery Cards Section */}
-        <div className="flex flex-wrap justify-center items-start mt-20 gap-15 pt-10 px-4">
-          <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px]  bg-gray-200 shadow-gray-400 shadow-2xl h-auto border-b-2 border-gray-400  hover:border-green-500">
-            <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden">
-              <Image
-                src="https://tridentrealty.co.in/home/images/banner_gallery1.webp"
-                alt="gallery"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <div className="md:px-10 md:py-4">
-              <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
-                GALLERY
-              </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
-                Go through our selection of images and videos to know more about
-                Trident Realty
-              </p>
-              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-auto hover:cursor-pointer">
-                Read More...
-              </button>
+        {/* Gallery Section */}
+        <section className="py-12 md:py-15">
+          <div className="max-w-7xl mx-auto ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+              {galleryData.map((item, index) => (
+                <GalleryCard key={index} {...item} />
+              ))}
             </div>
           </div>
-
-          <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px]  bg-gray-200 shadow-gray-400 shadow-2xl h-auto border-b-2 border-gray-400  hover:border-green-500">
-            <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden">
-              <Image
-                src="https://tridentrealty.co.in/home/images/image2.webp"
-                alt="gallery"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <div className="md:px-10 md:py-4">
-              <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
-                SOCIAL MEDIA
-              </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
-                Join the social media family of Trident Realty and get the
-                updates on the latest developments and happenings.
-              </p>
-              <button className="w-30 h-12 border-2 border-gray-400 bg-white mt-auto hover:cursor-pointer">
-                Read More...
-              </button>
-            </div>
-          </div>
-
-          <div className="w-full sm:w-[300px] md:w-[400px] md:h-[500px] bg-gray-200 shadow-gray-400 flex-wrap shadow-2xl h-auto border-b-2 border-gray-400 hover:border-green-500">
-            <div className="w-full h-[250px] md:h-[300px] relative overflow-hidden   ">
-              <Image
-                src="https://tridentrealty.co.in/home/images/image4.webp"
-                alt="gallery"
-                fill
-                className="object-cover  transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
-              />
-            </div>
-            <div className="md:px-10 md:py-4">
-              <h3 className="pt-3 font-semibold text-xl md:text-2xl md:px-2 text-start">
-                MEDIA CENTRE
-              </h3>
-              <p className=" text-sm  mt-1 md:pt-8 text-start md:pb-6 text-gray-600">
-                Take a look at what we&apos;ve been up to in the media and other
-                coverages related to the brand.
-              </p>
-
-              <button className="w-30 h-12  transition-all bg-white border-2 border-gray-400 mt-auto hover:cursor-pointer">
-                Read More...
-              </button>
-            </div>
-          </div>
-        </div>
+        </section>
 
         {/* Follow Us Section */}
-        <div className="flex flex-col items-center justify-center py-10 pt-20 px-4">
-          <h2 className="text-xl sm:text-2xl md:text-6xl font-normal tracking-wide mb-12">
-            FOLLOW US
-          </h2>
-          <div className="flex gap-4 sm:gap-16 text-xl sm:text-2xl text-gray-800">
-            <a
-              href="#"
-              className="hover:text-blue-600 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="#"
-              className="hover:text-pink-600 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="#"
-              className="hover:text-blue-700 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="#"
-              className="hover:text-black hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <FaXTwitter />
-            </a>
-            <a
-              href="#"
-              className="hover:text-red-600 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <FaYoutube />
-            </a>
+        <section className="py-12 md:py-16">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light tracking-wide mb-12">
+              FOLLOW US
+            </h2>
+            <div className="flex justify-center gap-6 sm:gap-8 md:gap-12">
+              {socialLinks.map(({ Icon, href, hoverColor }, index) => (
+                <a
+                  key={index}
+                  href={href}
+                  className={`text-2xl sm:text-3xl text-gray-800 ${hoverColor} hover:scale-110 transition-all duration-300 cursor-pointer`}
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-        {/* Get in Touch Section */}
-        <div className="bg-gray-100 py-10 px-4">
-          <div className="container mx-auto">
-            <h2 className="text-xl sm:text-2xl font-bold text-blue-900 mb-6">
+        </section>
+
+        {/* Contact Form Section */}
+        <section className="bg-gray-100 py-12 md:py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-blue-900 mb-8">
               GET IN TOUCH
             </h2>
-            <form className="flex gap-4 flex-wrap justify-center">
+            <form className="flex flex-col sm:flex-row gap-4 flex-wrap">
               <input
                 type="text"
                 placeholder="Your name"
-                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700"
+                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition-colors"
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700"
+                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition-colors"
               />
               <input
-                type="text"
+                type="tel"
                 placeholder="Mobile Number"
-                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700"
+                className="flex-1 min-w-[200px] px-4 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-700 focus:border-blue-700 transition-colors"
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-blue-900 text-white font-bold rounded-md hover:bg-blue-800 hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
+                className="px-8 py-3 bg-blue-900 text-white font-bold rounded-md hover:bg-blue-800 hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 SUBMIT
               </button>
             </form>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-15 md:md-10 md:mx-45 text-center md:text-left">
+      {/* Footer Section */}
+      <section className="bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] bg-repeat bg-center py-10 px-6">
+        <div className="mx-auto w-[80%] grid grid-cols-2 md:grid-cols-5 gap-8 text-md text-center md:text-left max-w-7xl">
           <div>
-            <h2 className="text-xl font-serif text-blue-500">WHO WE ARE</h2>
-            <ul className="grid gap-2 pt-3 font-medium text-gray-700 ">
-              <li>
-                <a href="#brand-philosophy">Brand Philosophy</a>
-              </li>
-              <li>
-                <a href="#logo-story">The Logo Story</a>
-              </li>
-              <li>
-                <a href="#trident-approach">The Trident Approach</a>
-              </li>
-              <li>
-                <a href="#vision-mission">Vision & Mission</a>
-              </li>
-              <li>
-                <a href="#group-chairman">Group Chairman</a>
-              </li>
-              <li>
-                <a href="#leadership-team">Leadership Team</a>
-              </li>
+            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+              WHO WE ARE
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Brand Philosophy</li>
+              <li>The Logo Story</li>
+              <li>The Trident Approach</li>
+              <li>Vision & Mission</li>
+              <li>Group Chairman</li>
+              <li>Leadership Team</li>
             </ul>
           </div>
-          <div className="grid grid-rows-2 gap-6">
-            <div>
-              <h2 className="text-xl font-serif text-blue-500">PROJECTS</h2>
-              <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li>
-                  <a href="#">Residential</a>
-                </li>
-                <li>
-                  <a href="#">Commercial</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-xl font-serif text-blue-500">NEW PROJECTS</h2>
-              <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-                <li>
-                  <a href="#">Windsong Residences</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+
           <div>
-            <h2 className="text-xl font-serif text-blue-500">LOCATIONS</h2>
-            <ul className="grid gap-2 pt-3 font-medium text-gray-700">
-              <li>
-                <a href="#delhi-ncr">Delhi NCR</a>
-              </li>
-              <li>
-                <a href="#mumbai">Mumbai</a>
-              </li>
-              <li>
-                <a href="#chandigarh">Chandigarh</a>
-              </li>
-              <li>
-                <button className="bg-blue-600 text-white py-1 px-4 rounded-md">
-                  <a href="#">Coming Soon</a>
-                </button>
-              </li>
-              <li>
-                <a href="#">Gurugram & Panipat</a>
-              </li>
+            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+              PROJECTS
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Residential</li>
+              <li>Commercial</li>
+            </ul>
+
+            <h3 className="text-blue-900 font-semibold mt-5 mb-3">
+              NEW PROJECTS
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Windsong Residences</li>
             </ul>
           </div>
+
           <div>
-            <h2 className="text-xl font-serif text-blue-500">MEDIA CENTER</h2>
-            <ul className="grid gap-2 pt-3 font-serif text-gray-700">
+            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+              LOCATIONS
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Delhi NCR</li>
+              <li>Mumbai</li>
+              <li>Chandigarh</li>
               <li>
-                <a href="#">News</a>
+                <span className="bg-blue-900 text-white px-2 py-0.5 font-semibold animate-pulse">
+                  Coming Soon
+                </span>
               </li>
-              <li>
-                <a href="#">Press Release</a>
-              </li>
-              <li>
-                <a href="#">Blogs</a>
-              </li>
-              <li>
-                <a href="#">Videos</a>
-              </li>
-              <li>
-                <a href="#">Media Centre</a>
-              </li>
-              <li>
-                <a href="#">Gallery</a>
-              </li>
+              <li>Gurugram & Panipat</li>
             </ul>
           </div>
+
           <div>
-            <h2 className="text-xl font-serif text-blue-500">OTHER LINKS</h2>
-            <ul className="grid gap-2 pt-3 font-serif text-gray-700">
-              <li>
-                <a href="#">Construction Update</a>
-              </li>
-              <li>
-                <a href="#">Testimonials</a>
-              </li>
-              <li>
-                <a href="#">Customer Zone</a>
-              </li>
-              <li>
-                <a href="#">Associate Zone</a>
-              </li>
-              <li>
-                <a href="#">Careers</a>
-              </li>
-              <li>
-                <a href="#">Contact Us</a>
-              </li>
+            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+              MEDIA CENTER
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>News</li>
+              <li>Press Release</li>
+              <li>Blogs</li>
+              <li>Videos</li>
+              <li>Media Centre</li>
+              <li>Gallery</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+              OTHER LINKS
+            </h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Construction Update</li>
+              <li>Testimonials</li>
+              <li>Customer Zone</li>
+              <li>Associate Zone</li>
+              <li>Careers</li>
+              <li>Contact Us</li>
             </ul>
           </div>
         </div>
-
-        <div className="bg-gray-50 py-6 border-t border-gray-200 mt-6">
-          <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-6 gap-6">
-            {/* Phone */}
-            <div className="flex items-center gap-2">
-              <Phone className="text-blue-600 w-5 h-5" />
-              <p>
-                Tel:{" "}
-                <a
-                  href="tel:+917026035000"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  +91 702 603 5000
-                </a>
-              </p>
-            </div>
-            {/* Corporate Office */}
-            <div className="flex items-start gap-2 text-center md:text-left">
-              <MapPin className="text-blue-600 w-5 h-5 mt-1" />
-              <div>
-                <p className="font-semibold">Corporate Office</p>
-                <p className="text-gray-600 text-sm">
-                  Office Suite 8 & 9, 3rd Floor,
-                  <br />
-                  Ninex City Mart, Sohna Road,
-                  <br />
-                  Near Radisson Hotel, Sector 49,
-                  <br />
-                  Gurugram, Haryana 122018
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="text-blue-600 w-5 h-5" />
+      </section>
+      {/* Contact Info Section */}
+      <section className="bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] bg-repeat bg-center py-6 shadow-sm border-gray-400 border-t">
+        <div className="mx-auto w-[80%] flex flex-col md:flex-row items-center md:items-start justify-between gap-8 px-4 text-gray-800 text-center md:text-left max-w-7xl">
+          <div className="flex items-center gap-3 justify-center md:justify-start">
+            <MdOutlinePhoneInTalk size={34} />
+            <p>
+              <span className="font-medium">Tel:</span>{" "}
               <a
-                href="mailto:care@tridentrealty.co.in"
+                href="#"
                 className="text-blue-600 font-semibold hover:underline"
               >
-                care@ireedindia.co.in
+                +91 702 603 5000
               </a>
-            </div>
+            </p>
+          </div>
+
+          <div className="flex items-start gap-3 justify-center md:justify-start">
+            <IoLocationOutline size={34} />
+            <p>
+              <span className="font-bold">Corporate Office</span>
+              <br />
+              Trident Realty, 16th Floor, DLF Square,
+              <br />
+              DLF Phase-II, Jacaranda Marg,
+              <br />
+              Gurugram - 122002, Haryana (India).
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 justify-center md:justify-start">
+            <TfiEmail size={34} />
+            <a
+              href="mailto:care@tridentrealty.co.in"
+              className="text-blue-600 font-semibold hover:underline"
+            >
+              care@tridentrealty.co.in
+            </a>
           </div>
         </div>
-
-        <div className="bg-blue-900 text-white py-4 text-center md:text-left">
-          <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
-            <p className="text-sm md:text-base">
-              © IREED INDIA , 2025 All Rights Reserved
-            </p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
-              <a href="#" className="hover:underline">
+      </section>
+      {/* Footer Bottom Section */}
+      <footer className="bg-[#0a2d6e] text-white py-8 text-sm">
+        <div className="mx-auto w-[80%] flex flex-col md:flex-row items-center justify-between gap-2 px-4 max-w-7xl">
+          <div className="text-center md:text-left">
+            <p>© Trident Realty, 2025 All Rights Reserved</p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 text-white/90 mt-1">
+              <a href="#" className="hover:underline font-semibold">
                 Terms of Use
               </a>
               <span>|</span>
@@ -810,13 +856,14 @@ const Page = () => {
                 Online Application Facility
               </a>
             </div>
-            <p className="text-sm">
-              Designed By: <span className="font-semibold">IREED</span>
-            </p>
+          </div>
+
+          <div className="text-center md:text-right text-white/90 mt-2 md:mt-0">
+            Designed By: <span className="font-semibold">CSIPL</span>
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
