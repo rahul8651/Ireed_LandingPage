@@ -339,6 +339,16 @@ const Page = () => {
           </div>
         </div>
 
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-20 px-40 
+                bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] 
+                bg-cover bg-center"
+        >
+          {cardData.map((card) => (
+            <CounterCard key={card.id} {...card} />
+          ))}
+        </div>
+
         {/* Card Section */}
         <div className="w-[98%] sm:w-[90%] lg:w-[85%] mx-auto">
           <Swiper
