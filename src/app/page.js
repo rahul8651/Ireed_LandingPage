@@ -269,7 +269,7 @@ const Page = () => {
               alt="logo"
               width={100}
               height={50}
-              className="cursor-pointer w-20 h-15 md:w-25 md:h-12 object-contain"
+              className="cursor-pointer w-20 h-15 md:w-25 md:h-20 object-contain"
             />
           </div>
 
@@ -324,7 +324,7 @@ const Page = () => {
             </div>
 
             {/* Bottom Row */}
-            <div className="flex items-center gap-8 text-xs font-semibold text-gray-700">
+            <div className="flex items-center gap-8 text-xs font-semibold text-gray-700 pt-1">
               {navLinks.slice(3).map((link) => (
                 <a
                   key={link.label}
@@ -624,7 +624,7 @@ const Page = () => {
                   className="flex items-center bg-white rounded-md shadow p-4 
                      border border-transparent hover:border-green-700 
                      hover:scale-105 cursor-pointer transition-all duration-500
-                     min-w-[250px] lg:min-w-[300px]"
+                     min-w-[250px] lg:min-w-[300px] align-center justify-center gap-4"
                 >
                   <Image
                     src={city.src}
