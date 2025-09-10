@@ -95,9 +95,9 @@ const Page = () => {
         <div className="md:mx-50 px-4 py-2 flex justify-between items-center flex-wrap">
           <div className="flex-shrink-0">
             <Image
-              src="https://www.ireedindia.com/assets/images/logo/logo-dark.png"
+              src="/assest/logoestate.png"
               alt="logo"
-              width={150}
+              width={100}
               height={50}
               className="hover:cursor-pointer"
             />
@@ -292,7 +292,7 @@ const Page = () => {
       </header>
 
       <section className=" md:py-22">
-        <div className="w-full h-[50vh]  sm:h-[70vh] md:h-[80vh] lg:h-[90vh] md:py-10 overflow-hidden">
+        <div className="w-full h-[50vh]  sm:h-[70vh] md:h-[90vh] lg:h-full md:py-10 overflow-hidden">
           <video
             src="/assest/17267429988474.mp4"
             autoPlay
