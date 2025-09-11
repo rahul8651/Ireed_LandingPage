@@ -43,7 +43,7 @@ const CounterCard = ({ value, imgSrc }) => {
 
   return (
     <div className="flex items-center justify-between w-full h-40 p-4 md:p-6 rounded-xl shadow-xl border border-transparent hover:border-blue-500 transition-all duration-300 bg-white">
-      <span className="font-semibold text-blue-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+      <span className="font-semibold text-[#3480c2] text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
         {count}+
       </span>
       <Image
@@ -82,7 +82,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
       </p>
       <a
         href={linkHref}
-        className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
+        className="text-gray-500 hover:text-[#3480c2] transition-colors duration-300"
       >
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"
@@ -241,9 +241,9 @@ const galleryData = [
 ];
 
 const socialLinks = [
-  { Icon: FaFacebookF, href: "#", hoverColor: "hover:text-blue-600" },
+  { Icon: FaFacebookF, href: "#", hoverColor: "hover:text-[#3480c2]" },
   { Icon: FaInstagram, href: "#", hoverColor: "hover:text-pink-600" },
-  { Icon: FaLinkedinIn, href: "#", hoverColor: "hover:text-blue-700" },
+  { Icon: FaLinkedinIn, href: "#", hoverColor: "hover:text-[#3480c2]" },
   { Icon: FaXTwitter, href: "#", hoverColor: "hover:text-black" },
   { Icon: FaYoutube, href: "#", hoverColor: "hover:text-red-600" },
 ];
@@ -301,15 +301,15 @@ const Page = () => {
                 Book Online
               </button>
               <div className="w-px h-6 bg-gray-400"></div>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-[#3480c2] transition-colors">
                 ASSOCIATE ZONE
               </a>
               <div className="w-px h-6 bg-gray-400"></div>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-[#3480c2] transition-colors">
                 CAREER ZONE
               </a>
               <div className="w-px h-6 bg-gray-400"></div>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-[#3480c2] transition-colors">
                 EMPLOYEE LOGIN
               </a>
               <div className="w-px h-6 bg-gray-400"></div>
@@ -317,13 +317,13 @@ const Page = () => {
                 <a href="#">
                   <Phone
                     size={16}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    className="text-gray-600 hover:text-[#3480c2] transition-colors"
                   />
                 </a>
                 <a href="#">
                   <Mail
                     size={16}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    className="text-gray-600 hover:text-[#3480c2] transition-colors"
                   />
                 </a>
               </div>
@@ -335,14 +335,14 @@ const Page = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-[#3480c2] transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
               <a
                 href="#"
-                className="text-blue-600 hover:text-blue-800 transition-colors"
+                className="text-[#3480c2] hover:text-[#3480c2] transition-colors"
               >
                 Privilege Passport
               </a>
@@ -361,7 +361,7 @@ const Page = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="block py-2 font-medium hover:text-blue-600 transition-colors"
+                className="block py-2 font-medium hover:text-[#3480c2] transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
@@ -369,7 +369,7 @@ const Page = () => {
             ))}
             <a
               href="#"
-              className="block py-2 font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="block py-2 font-medium text-[#3480c2] hover:text-[#3480c2] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Privilege Passport
@@ -406,7 +406,7 @@ const Page = () => {
             <div className="hidden md:block w-0.5 h-48 bg-gradient-to-b from-blue-500 to-green-500"></div>
 
             <div className="flex-1">
-              <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-light text-blue-500 mb-6">
+              <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-light text-[#3480c2] mb-6">
                 BUILDING THE NATION
               </h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6">
@@ -432,7 +432,7 @@ const Page = () => {
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
-                <h2 className="text-5xl font-bold text-blue-900">16</h2>
+                <h2 className="text-5xl font-bold text-[#3480c2]">16</h2>
                 <Image
                   src="/assest1/happy_icon1.webp"
                   alt="Happy Icon 1"
@@ -452,7 +452,7 @@ const Page = () => {
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
-                <h2 className="text-5xl font-bold text-blue-900">1.89</h2>
+                <h2 className="text-5xl font-bold text-[#3480c2]">1.89</h2>
                 <Image
                   src="/assest1/happy_icon1.webp"
                   alt="Happy Icon 1"
@@ -472,7 +472,7 @@ const Page = () => {
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
-                <h2 className="text-5xl font-bold text-blue-900">20k+</h2>
+                <h2 className="text-5xl font-bold text-[#3480c2]">20k+</h2>
                 <Image
                   src="/assest1/happy_icon1.webp"
                   alt="Happy Icon 1"
@@ -490,7 +490,7 @@ const Page = () => {
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
-                <h2 className="text-5xl font-bold text-blue-900">1.02</h2>
+                <h2 className="text-5xl font-bold text-[#3480c2]">1.02</h2>
                 <Image
                   src="/assest1/happy_icon1.webp"
                   alt="Happy Icon 1"
@@ -682,7 +682,7 @@ const Page = () => {
         {/* Contact Form Section */}
         <section className="bg-gray-100 py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-xl sm:text-2xl font-bold text-blue-900 mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#3480c2] mb-8">
               GET IN TOUCH
             </h2>
             <form className="flex flex-col sm:flex-row gap-4 flex-wrap">
@@ -716,7 +716,7 @@ const Page = () => {
       <section className="bg-[url('https://tridentrealty.co.in/home/images/bg_happy_customer.webp')] bg-repeat bg-center py-10 px-6">
         <div className="mx-auto w-[80%] grid grid-cols-2 md:grid-cols-5 gap-8 text-md text-center md:text-left max-w-7xl">
           <div>
-            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+            <h3 className="text-[#3480c2] font-semibold mb-3 text-xl">
               WHO WE ARE
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -730,7 +730,7 @@ const Page = () => {
           </div>
 
           <div>
-            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+            <h3 className="text-[#3480c2] font-semibold mb-3 text-xl">
               PROJECTS
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -738,7 +738,7 @@ const Page = () => {
               <li>Commercial</li>
             </ul>
 
-            <h3 className="text-blue-900 font-semibold mt-5 mb-3">
+            <h3 className="text-[#3480c2] font-semibold mt-5 mb-3">
               NEW PROJECTS
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -747,7 +747,7 @@ const Page = () => {
           </div>
 
           <div>
-            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+            <h3 className="text-[#3480c2] font-semibold mb-3 text-xl">
               LOCATIONS
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -764,7 +764,7 @@ const Page = () => {
           </div>
 
           <div>
-            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+            <h3 className="text-[#3480c2] font-semibold mb-3 text-xl">
               MEDIA CENTER
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -778,7 +778,7 @@ const Page = () => {
           </div>
 
           <div>
-            <h3 className="text-blue-900 font-semibold mb-3 text-xl">
+            <h3 className="text-[#3480c2] font-semibold mb-3 text-xl">
               OTHER LINKS
             </h3>
             <ul className="space-y-2 text-gray-700">
@@ -801,7 +801,7 @@ const Page = () => {
               <span className="font-medium">Tel:</span>{" "}
               <a
                 href="#"
-                className="text-blue-600 font-semibold hover:underline"
+                className="text-[#3480c2] font-semibold hover:underline"
               >
                 +91 702 603 5000
               </a>
@@ -825,7 +825,7 @@ const Page = () => {
             <TfiEmail size={34} />
             <a
               href="mailto:care@ireed.co.in"
-              className="text-blue-600 font-semibold hover:underline"
+              className="text-[#3480c2] font-semibold hover:underline"
             >
               care@ireed.co.in
             </a>
