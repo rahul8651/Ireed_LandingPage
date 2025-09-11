@@ -59,7 +59,7 @@ const CounterCard = ({ value, imgSrc }) => {
 
 // Project Card Component
 const ProjectCard = ({ src, alt, title, location, linkHref }) => (
-  <div className="w-full">
+  <div className="w-full group">
     {/* Image container with smaller heights */}
     <div className="w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[300px] relative overflow-hidden">
       <Image
@@ -69,16 +69,21 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
         className="object-cover transition-transform duration-500 hover:scale-110 shadow-xl hover:shadow-2xl hover:cursor-pointer"
       />
     </div>
+
     {/* Title */}
     <h3 className="pt-4 text-left font-semibold text-lg sm:text-xl text-gray-800">
       {title}
     </h3>
+
     {/* Location and Arrow */}
-    <div className="flex justify-between items-center mt-2 pb-4 border-b border-gray-300">
+    <div className="flex justify-between items-center mt-2 pb-4 border-b border-gray-300 transition-colors duration-300 group-hover:border-blue-600">
       <p className="text-gray-600 text-sm sm:text-base text-left">
         {location}
       </p>
-      <a href={linkHref} className="text-gray-500 hover:text-green-600 transition-colors duration-300">
+      <a
+        href={linkHref}
+        className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
+      >
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
@@ -98,6 +103,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
   </div>
 );
 
+
 // Presence Card Component
 const PresenceCard = ({ imgSrc, title, alt }) => (
   <div className="h-40 md:h-48 w-full flex items-center justify-center gap-4 md:gap-6 px-4 md:px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
@@ -116,7 +122,7 @@ const PresenceCard = ({ imgSrc, title, alt }) => (
 
 // Gallery Card Component
 const GalleryCard = ({ imgSrc, title, description, alt }) => (
-  <div className="w-full max-w-sm mx-auto bg-gray-200 shadow-2xl border-b-2 border-gray-400 hover:border-green-500 transition-colors duration-300">
+  <div className="w-full max-w-sm mx-auto bg-gray-200 shadow-2xl border-b-2 border-gray-400 hover:border-blue-500 transition-colors duration-300">
     <div className="w-full h-50 md:h-60 relative overflow-hidden">
       <Image
         src={imgSrc}
@@ -130,7 +136,7 @@ const GalleryCard = ({ imgSrc, title, description, alt }) => (
       <p className="text-sm text-gray-600 mb-4 leading-relaxed">
         {description}
       </p>
-      <button className="px-4 py-2 border-2 border-gray-400 bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer text-sm">
+      <button className="px-4 py-2 border-2 border-gray-400 bg-white hover:bg-blue-500 transition-colors duration-200 cursor-pointer text-sm">
         Read More...
       </button>
     </div>
@@ -400,7 +406,7 @@ const Page = () => {
             <div className="hidden md:block w-0.5 h-48 bg-gradient-to-b from-blue-500 to-green-500"></div>
 
             <div className="flex-1">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-green-500 mb-6">
+              <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-light text-blue-500 mb-6">
                 BUILDING THE NATION
               </h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6">
@@ -422,7 +428,7 @@ const Page = () => {
           <div className="mx-auto w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl">
             <div
               className="bg-white rounded-lg shadow p-6 relative 
-      border border-transparent hover:border-green-700
+      border border-transparent hover:border-blue-700
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
@@ -442,7 +448,7 @@ const Page = () => {
 
             <div
               className="bg-white rounded-lg shadow p-6 relative 
-      border border-transparent hover:border-green-700
+      border border-transparent hover:border-blue-700
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
@@ -462,7 +468,7 @@ const Page = () => {
 
             <div
               className="bg-white rounded-lg shadow p-6 relative 
-      border border-transparent hover:border-green-700
+      border border-transparent hover:border-blue-700
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
@@ -480,7 +486,7 @@ const Page = () => {
 
             <div
               className="bg-white rounded-lg shadow p-6 relative 
-      border border-transparent hover:border-green-700
+      border border-transparent hover:border-blue-700
       hover:scale-105 cursor-pointer transition-all duration-500"
             >
               <div className="flex items-center justify-between pb-2">
@@ -622,7 +628,7 @@ const Page = () => {
                 <div
                   key={index}
                   className="flex items-center bg-white rounded-md shadow p-4 
-                     border border-transparent hover:border-green-700 
+                     border border-transparent hover:border-blue-700 
                      hover:scale-105 cursor-pointer transition-all duration-500
                      min-w-[250px] lg:min-w-[300px] align-center justify-center gap-4"
                 >
@@ -656,7 +662,7 @@ const Page = () => {
         {/* Follow Us Section */}
         <section className="py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light tracking-wide mb-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-wide mb-12">
               FOLLOW US
             </h2>
             <div className="flex justify-center gap-6 sm:gap-8 md:gap-12">
@@ -807,21 +813,21 @@ const Page = () => {
             <p>
               <span className="font-bold">Corporate Office</span>
               <br />
-              Trident Realty, 16th Floor, DLF Square,
+              Office Suite 8 & 9, 3rd Floor,
               <br />
-              DLF Phase-II, Jacaranda Marg,
+              Ninex City Mall, Sohna Road,
               <br />
-              Gurugram - 122002, Haryana (India).
+              Gurugram - 122018, Haryana (India).
             </p>
           </div>
 
           <div className="flex items-center gap-3 justify-center md:justify-start">
             <TfiEmail size={34} />
             <a
-              href="mailto:care@tridentrealty.co.in"
+              href="mailto:care@ireed.co.in"
               className="text-blue-600 font-semibold hover:underline"
             >
-              care@tridentrealty.co.in
+              care@ireed.co.in
             </a>
           </div>
         </div>
@@ -830,7 +836,7 @@ const Page = () => {
       <footer className="bg-[#0a2d6e] text-white py-8 text-sm">
         <div className="mx-auto w-[80%] flex flex-col md:flex-row items-center justify-between gap-2 px-4 max-w-7xl">
           <div className="text-center md:text-left">
-            <p>© Trident Realty, 2025 All Rights Reserved</p>
+            <p>© Ireed India, 2025 All Rights Reserved</p>
             <div className="flex flex-wrap justify-center md:justify-start gap-2 text-white/90 mt-1">
               <a href="#" className="hover:underline font-semibold">
                 Terms of Use
@@ -859,7 +865,7 @@ const Page = () => {
           </div>
 
           <div className="text-center md:text-right text-white/90 mt-2 md:mt-0">
-            Designed By: <span className="font-semibold">CSIPL</span>
+            Designed By: <span className="font-semibold">IREED</span>
           </div>
         </div>
       </footer>
