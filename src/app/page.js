@@ -17,6 +17,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { TfiEmail } from "react-icons/tfi";
 
 
+
+
 // Counter hook for animated numbers
 const useCounter = (target, duration = 2000) => {
   const [count, setCount] = useState(0);
@@ -76,7 +78,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
     </h3>
 
     {/* Location and Arrow */}
-    <div className="flex justify-between items-center mt-2 pb-4 border-b border-gray-300 transition-colors duration-300 group-hover:border-blue-600">
+    <div className="flex justify-between items-center mt-2 pb-4 border-b border-gray-300 transition-colors duration-300 group-hover:border-[#3480c2]">
       <p className="text-gray-600 text-sm sm:text-base text-left">
         {location}
       </p>
@@ -84,6 +86,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
         href={linkHref}
         className="text-gray-500 hover:text-[#3480c2] transition-colors duration-300"
       >
+        
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
@@ -97,6 +100,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
             strokeWidth="2"
             d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
           ></path>
+          
         </svg>
       </a>
     </div>
@@ -106,7 +110,7 @@ const ProjectCard = ({ src, alt, title, location, linkHref }) => (
 
 // Presence Card Component
 const PresenceCard = ({ imgSrc, title, alt }) => (
-  <div className="h-40 md:h-48 w-full flex items-center justify-center gap-4 md:gap-6 px-4 md:px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-blue-500 transition-all duration-300 rounded-xl">
+  <div className="h-40 md:h-48 w-full flex items-center justify-center gap-4 md:gap-6 px-4 md:px-6 shadow-xl hover:shadow-2xl bg-white border border-transparent hover:border-[#3480c2] transition-all duration-300 rounded-xl">
     <Image
       src={imgSrc}
       alt={alt}
@@ -296,8 +300,8 @@ const Page = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-col items-end gap-2">
             {/* Top Row */}
-            <div className="flex items-center gap-4 text-xs font-semibold text-gray-700">
-              <button className="bg-blue-600 text-white px-3 py-1 animate-pulse hover:bg-blue-700 transition-colors">
+            <div className="flex items-center gap-4 text-md font-mono text-black pt-1 text-[13px]  font-extralight "  >
+              <button className="bg-[#3480c2] text-white px-2  animate-pulse hover:bg-[#3480c2] transition-colors">
                 Book Online
               </button>
               <div className="w-px h-6 bg-gray-400"></div>
@@ -306,7 +310,7 @@ const Page = () => {
               </a>
               <div className="w-px h-6 bg-gray-400"></div>
               <a href="#" className="hover:text-[#3480c2] transition-colors">
-                CAREER ZONE
+                CAREER
               </a>
               <div className="w-px h-6 bg-gray-400"></div>
               <a href="#" className="hover:text-[#3480c2] transition-colors">
@@ -320,6 +324,7 @@ const Page = () => {
                     className="text-gray-600 hover:text-[#3480c2] transition-colors"
                   />
                 </a>
+                <div className="w-px h-6 bg-gray-400"></div>
                 <a href="#">
                   <Mail
                     size={16}
@@ -330,7 +335,7 @@ const Page = () => {
             </div>
 
             {/* Bottom Row */}
-            <div className="flex items-center gap-8 text-xs font-semibold text-gray-700 pt-1">
+            <div className="flex items-center gap-8 text-md font-mono text-black pt-1 text-[13px]  font-extralight"  >
               {navLinks.slice(3).map((link) => (
                 <a
                   key={link.label}
@@ -403,7 +408,7 @@ const Page = () => {
               </h2>
             </div>
 
-            <div className="hidden md:block w-0.5 h-48 bg-gradient-to-b from-blue-500 to-green-500"></div>
+            <div className="hidden md:block w-0.5 h-65 bg-gradient-to-b from-blue-500 to-green-500"></div>
 
             <div className="flex-1">
               <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-light text-[#3480c2] mb-6">
@@ -681,7 +686,7 @@ const Page = () => {
 
         {/* Contact Form Section */}
         <section className="bg-gray-100 py-12 md:py-16">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-[#3480c2] mb-8">
               GET IN TOUCH
             </h2>
@@ -833,7 +838,7 @@ const Page = () => {
         </div>
       </section>
       {/* Footer Bottom Section */}
-      <footer className="bg-[#0a2d6e] text-white py-8 text-sm">
+      <footer className="bg-[#0a2d6e] text-white py-8 text-md">
         <div className="mx-auto w-[80%] flex flex-col md:flex-row items-center justify-between gap-2 px-4 max-w-7xl">
           <div className="text-center md:text-left">
             <p>© Ireed India, 2025 All Rights Reserved</p>
